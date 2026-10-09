@@ -8,5 +8,7 @@ elif c == '-':
 elif c == '*':
     print('Результат ' + str(a*b))
 elif c =='/':
+        if b == 0 :
+             print("деление на ноль")
         print('Результат ' + str(a/b))
 
