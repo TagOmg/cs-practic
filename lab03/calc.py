@@ -7,4 +7,6 @@ elif c == '-':
     print('Результат ' + str(a-b))
 elif c == '*':
     print('Результат ' + str(a*b))
+elif c =='/':
+        print('Результат ' + str(a/b))
 
