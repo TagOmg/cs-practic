@@ -13,13 +13,13 @@ def parse_record(lines):
             raise ValueError('Температура записана не числом')
 
 
-def read_valid():
+def read_valid(lines):
     inf = []
-    for lines in sys.stdin.read().splitlines():
+    for line in lines:
         try:
-            inf.append(parse_record(lines))
+            inf.append(parse_record(line))
         except ValueError:
-            pass
+            count += 1
     return inf
 
 def average_by_city(inf):
@@ -34,4 +34,3 @@ def average_by_city(inf):
 def warmest_city(inf):
     inf.sort(key=lambda x: x['city'])
     return max(inf, key=lambda x: x['temp'])['city']
-print(average_by_city(read_valid()))
