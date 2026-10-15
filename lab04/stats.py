@@ -25,7 +25,7 @@ def read_valid(lines):
 def average_by_city(inf):
     average_cities_temp = dict()
     for record in inf:
-        average_cities_temp.setdefault(record["city"], []).append(record['temp'])
+        average_cities_temp.setdefault(record["city"], []).append(record['temperature'])
     for city in average_cities_temp:
         average_temp = sum(average_cities_temp[city])/len(average_cities_temp[city])
         average_cities_temp[city] = average_temp
@@ -33,4 +33,4 @@ def average_by_city(inf):
 
 def warmest_city(inf):
     inf.sort(key=lambda x: x['city'])
-    return max(inf, key=lambda x: x['temp'])['city']
+    return max(inf, key=lambda x: x['temperature'])['city']
