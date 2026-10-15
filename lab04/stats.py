@@ -8,7 +8,7 @@ def parse_record(lines):
         raise ValueError('Недостаточно данных')
     else:
         try:
-            return dict(city = line[0], temp = float(line[1]), date = line[2])
+            return dict(city = line[0], temperature = float(line[1]), date = line[2])
         except ValueError:
             raise ValueError('Температура записана не числом')
 
@@ -19,7 +19,7 @@ def read_valid(lines):
         try:
             inf.append(parse_record(line))
         except ValueError:
-            count += 1
+            pass
     return inf
 
 def average_by_city(inf):
