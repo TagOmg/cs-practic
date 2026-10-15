@@ -1,7 +1,7 @@
 import sys
 
 def parse_record(lines):
-    line = lines.strip().split(';')
+    line = lines.replace(' ', '').split(';')
     if len(line) != 3:
         raise ValueError('Недостаточно данных')
     elif line[0] == '' or line[2] == '':
@@ -11,7 +11,6 @@ def parse_record(lines):
             return dict(city = line[0], temperature = float(line[1].replace("," , ".")), date = line[2])
         except ValueError:
             raise ValueError('Температура записана не числом')
-
 def read_valid(lines):
     inf = []
     for line in lines:
