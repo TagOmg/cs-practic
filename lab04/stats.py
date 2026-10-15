@@ -23,12 +23,15 @@ def read_valid():
     return inf
 
 def average_by_city(inf):
-    average = 0
-    for city in inf:
-        average += city.get('temp')
-    return round(average/len(inf), 1)
+    average_cities_temp = dict()
+    for record in inf:
+        average_cities_temp.setdefault(record["city"], []).append(record['temp'])
+    for city in average_cities_temp:
+        average_temp = sum(average_cities_temp[city])/len(average_cities_temp[city])
+        average_cities_temp[city] = average_temp
+    return average_cities_temp
 
 def warmest_city(inf):
     inf.sort(key=lambda x: x['city'])
     return max(inf, key=lambda x: x['temp'])['city']
-print(warmest_city(read_valid()))
+print(average_by_city(read_valid()))
