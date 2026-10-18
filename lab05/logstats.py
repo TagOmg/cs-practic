@@ -22,7 +22,7 @@ def count_levels(lines):
                 level_counts['BROKEN'] +=1
                 continue
 
-        return level_counts
+        return dict(sorted(level_counts.items()))
 
 def top_errors(lines,n):
     errors = []
@@ -47,7 +47,18 @@ def top_errors(lines,n):
         else:
              lst_tuple.append((message['message'], count+1))
              count = 0
+
     lst_tuple.sort(key=lambda x: x[1],reverse=True)
+
     return lst_tuple[:n]
 
-print(top_errors(open('events.log'), 3))
+def format_report(count,errors):
+    print("Отчет по журналу\n")
+    sorted
+    for line in tuple(count.items()):
+         print(f'{line[0]}: {line[1]}')
+    print("\nЧастые ошибки: ")
+    for error in errors:
+        print(f'- {error[0]} - {error[1]}')
+
+format_report(count_levels(open('events.log')), top_errors(open('events.log'), 3))
