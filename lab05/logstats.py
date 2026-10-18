@@ -4,7 +4,7 @@ def parse_event(line):
         line = line.rstrip().split(maxsplit = 2)
         
         if line[1] not in levels:
-             raise ValueError('Нет уровня или неизвестный уровень')
+            raise ValueError('Нет уровня или неизвестный уровень')
         
         return dict(time = line[0], level = line[1], message = line[2])
 
@@ -14,7 +14,7 @@ def count_levels(lines):
         level_counts = dict(DEBUG = 0, INFO = 0, WARNING = 0, ERROR = 0, BROKEN = 0)
 
         for line in lines:
-            if len(line) != 0:
+            if len(line.rstrip()):
                 try:
                     match parse_event(line):
                         case {'level': lvl} if lvl in levels:
@@ -22,7 +22,9 @@ def count_levels(lines):
                 except ValueError:
                     level_counts['BROKEN'] +=1
                     continue
+
         keys_to_remove = [key for key, value in level_counts.items() if value == 0]
+        
         for key in keys_to_remove:
             del level_counts[key]
 
@@ -32,7 +34,7 @@ def top_errors(lines,n):
     errors = []
 
     for line in lines:
-        if len(line) != 0:
+        if len(line.rstrip()) != 0:
             try:
                 new_line =  parse_event(line)
                 match new_line:
@@ -74,3 +76,5 @@ def format_report(count,errors):
     result = ''.join(lst)
 
     return result
+
+print(count_levels(['', ' ', '2026-03-01T09:03:55 ERROR Не удалось открыть файл data.csv']))
