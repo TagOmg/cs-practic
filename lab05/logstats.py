@@ -9,8 +9,18 @@ def parse_event(line):
 
 
 def count_levels(lines):  
-    pass
+        level_counts = dict(DEBUG = 0, INFO = 0, WARNING = 0, ERROR = 0, BROKEN = 0)
+        for line in lines:
+            try:
+                new_level = parse_event(line)    
+                print(new_level)                      
+                match new_level:
+                    case {'level': lvl} if lvl in levels:
+                        level_counts[lvl] +=1
+            except ValueError:
+                level_counts['BROKEN'] +=1
+                continue
+        return level_counts
 
 def top_errors():
     pass
-
