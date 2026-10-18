@@ -2,7 +2,7 @@ levels = ['DEBUG', 'INFO', 'WARNING', 'ERROR']
 
 def parse_event(line):
         line = line.rstrip().split(maxsplit = 2)
-
+        
         if line[1] not in levels:
              raise ValueError('Нет уровня или неизвестный уровень')
         
@@ -61,9 +61,9 @@ def format_report(count,errors):
     lst.append("Отчет по журналу\n\n")
 
     for line in tuple(count.items()):
-        lst.append(f'{line[0]}: {line[1]}\n')
+         print(f'{line[0]}: {line[1]}\n')
 
-    lst.append("\nЧастые ошибки:\n")
+    lst.append("\nЧастые ошибки: ")
 
     for error in errors:
         lst.append(f'- {error[0]} - {error[1]}\n')
@@ -71,5 +71,3 @@ def format_report(count,errors):
     result = ''.join(lst)
 
     return result
-
-print(format_report({"ERROR": 2, "INFO": 1}, [["Нет доступа", 2]]))
