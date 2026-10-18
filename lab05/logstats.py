@@ -22,6 +22,9 @@ def count_levels(lines):
                 except ValueError:
                     level_counts['BROKEN'] +=1
                     continue
+        keys_to_remove = [key for key, value in level_counts.items() if value == 0]
+        for key in keys_to_remove:
+            del level_counts[key]
 
         return dict(sorted(level_counts.items()))
 
