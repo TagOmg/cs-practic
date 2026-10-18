@@ -58,7 +58,7 @@ def format_report(count,errors):
     result = ''
     lst = []
 
-    lst.append("Отчет по журналу\n\n")
+    lst.append("Отчёт по журналу\n\n")
 
     for line in tuple(count.items()):
         lst.append(f'{line[0]}: {line[1]}\n')
