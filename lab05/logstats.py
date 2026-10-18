@@ -61,4 +61,3 @@ def format_report(count,errors):
     for error in errors:
         print(f'- {error[0]} - {error[1]}')
 
-format_report(count_levels(open('events.log')), top_errors(open('events.log'), 3))
