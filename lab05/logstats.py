@@ -66,7 +66,7 @@ def format_report(count,errors):
     lst.append("\nЧастые ошибки:\n")
 
     for error in errors:
-        lst.append(f'- {error[0]} - {error[1]}\n')
+        lst.append(f'- {error[0]} — {error[1]}\n')
 
     result = ''.join(lst)
 
