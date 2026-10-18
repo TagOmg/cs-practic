@@ -1,6 +1,6 @@
-levels = ['DEBUG', 'INFO', 'WARNING', 'ERROR']
-
 file_name = input("Введите имя файла: ")
+
+levels = ['DEBUG', 'INFO', 'WARNING', 'ERROR']
 
 with open(file_name, 'r' ,encoding='utf-8') as lines, \
      open('report.txt','w', encoding='utf-8') as output:
@@ -17,6 +17,8 @@ with open(file_name, 'r' ,encoding='utf-8') as lines, \
             count_error += 1
         elif line[1] not in levels:
             count_bad += 1
+
+    print(count_line,count_error,count_bad, sep='\n')
     output_data = f"""Ввод:              Вывод:
 {file_name:<19}{count_line}
 {count_error:>20}
