@@ -10,6 +10,7 @@ def count_by_extension(paths):
         extensions_dict.setdefault(extension, 0)
         if extension in extensions_dict:
             extensions_dict[extension] += 1
+    return extensions_dict
 
 
 def deepest_path(paths):
@@ -22,6 +23,6 @@ def human_size(n_bytes: float) -> str:
         if n_bytes < 1024 or unit == 'ТБ':
             return f"{n_bytes:.1f} {unit}"
         n_bytes /= 1024
+    
 
 
-print(human_size(1024*10254*23534*3.42))
