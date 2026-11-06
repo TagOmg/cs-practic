@@ -65,9 +65,9 @@ def format_report(count,errors):
 
     lst.append("Отчёт по журналу\n\n")
 
-    for line in tuple(count.items()):
+    for line in count.items():
         lst.append(f'{line[0]}: {line[1]}\n')
-
+        print(line)
     lst.append("\nЧастые ошибки:\n")
 
     for error in errors:
@@ -77,4 +77,4 @@ def format_report(count,errors):
 
     return result
 
-print(count_levels(['', ' ', '2026-03-01T09:03:55 ERROR Не удалось открыть файл data.csv']))
+print(format_report(count_levels(open('events.log')),top_errors(open('events.log'), 3)))
