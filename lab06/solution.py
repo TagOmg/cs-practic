@@ -1,16 +1,30 @@
 paths = ["docs/report.PDF", "notes.txt", "docs/img/logo.png", "Makefile"]
+extensions_dict = {}
+lst = [    ]
 
-def count_by_extension(paths: list[str]) -> dict[str, int]:
-    exts = [(p.split("/")[-1].split(".")[-1].lower() if "." in p.split("/")[-1] else "") for p in paths]
-    return {e: exts.count(e) for e in exts}
+def count_by_extension(paths):
+    for path  in paths:
+        extension = path.split('/')[-1].split('.')[-1].lower()
+        if '.' not in path.split('/')[-1]:
+            extension = ''
+        elif path.split('/')[-1][0] == '.':
+             extension = ''
+        extensions_dict.setdefault(extension, 0)
+        if extension in extensions_dict:
+            extensions_dict[extension] += 1
+    return extensions_dict
 
 
-def deepest_path(paths: list[str]) -> str:
-    return min(paths, key=lambda p: (-p.count("/"), p)) if paths else ""
+def deepest_path(paths):
+    paths.sort()
+    for x in paths:
+        lst.append(x.count('/'))
+    return paths[lst.index(max(lst))] if len(paths) else ''
 
-
-def human_size(n_bytes: int) -> str:
-    for u in ["Б", "КБ", "МБ", "ГБ", "ТБ"]:
-        if n_bytes < 1024 or u == "ТБ":
-            return f"{n_bytes} Б" if u == "Б" else f"{n_bytes:.1f} {u}"
+def human_size(n_bytes: float) -> str:
+    for unit in ['Б', 'КБ', 'МБ', 'ГБ', 'ТБ']:
+        if n_bytes < 1024 and unit == 'Б':
+           return f"{int(n_bytes)} {unit}" 
+        elif n_bytes < 1024 or unit == 'ТБ':
+            return f"{n_bytes:.1f} {unit}"
         n_bytes /= 1024
