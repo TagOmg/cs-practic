@@ -1,6 +1,6 @@
 paths = ["docs/report.PDF", "notes.txt", "docs/img/logo.png", "Makefile"]
 extensions_dict = {}
-lst = [    ]
+lst = [     ]
 
 def count_by_extension(paths):
     for path  in paths:
