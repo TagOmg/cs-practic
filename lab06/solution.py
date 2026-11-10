@@ -14,15 +14,19 @@ def count_by_extension(paths):
 
 
 def deepest_path(paths):
+    paths.sort()
     for x in paths:
         lst.append(x.count('/'))
-    return max(lst)
+    return paths[lst.index(max(lst))] if len(paths) else None
 
 def human_size(n_bytes: float) -> str:
     for unit in ['Б', 'КБ', 'МБ', 'ГБ', 'ТБ']:
+        if unit == 'Б':
+           return f"{int(n_bytes)} {unit}" 
         if n_bytes < 1024 or unit == 'ТБ':
             return f"{n_bytes:.1f} {unit}"
         n_bytes /= 1024
     
 
 
+print(human_size(0))
