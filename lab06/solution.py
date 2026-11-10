@@ -21,7 +21,7 @@ def deepest_path(paths):
 
 def human_size(n_bytes: float) -> str:
     for unit in ['Б', 'КБ', 'МБ', 'ГБ', 'ТБ']:
-        if unit == 'Б':
+        if n_bytes < 1024 and unit == 'Б':
            return f"{int(n_bytes)} {unit}" 
         if n_bytes < 1024 or unit == 'ТБ':
             return f"{n_bytes:.1f} {unit}"
@@ -29,4 +29,4 @@ def human_size(n_bytes: float) -> str:
     
 
 
-print(human_size(0))
+print(human_size(1536))
