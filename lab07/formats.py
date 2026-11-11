@@ -1,3 +1,5 @@
+import json
+
 def csv_to_records(text):
     
     lst = []
@@ -48,10 +50,6 @@ def parse_settings(lines):
             otvet[next(reversed(otvet))].append(x[4:].strip())
     return otvet
 
-
-
-
-
 def merge_by_key(rows, extra, key):
     extra_key = next(iter(extra))
     for dic in rows:
@@ -61,10 +59,8 @@ def merge_by_key(rows, extra, key):
 
 
 
+def records_to_json(records: list[dict]) -> str:
+    return json.dumps(records, indent=2, sort_keys=True, ensure_ascii=False)
 
-print(merge_by_key([{'id': '1', 'город': 'Азов'}, {'id': '2', 'город': 'Шахты', 'регион': 'Чурчхела'}, {'id': '3', 'город': 'егорлык'}], {"Шахты": {"регион": "Зерноградский"}}, "город"))
-
-
-
-def records_to_json(records):
-    pass
+print(
+records_to_json([{"б": 2, "а": 1, 'я':3}]))
