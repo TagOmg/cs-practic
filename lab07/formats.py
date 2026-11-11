@@ -49,20 +49,20 @@ def parse_settings(lines):
     return otvet
 
 
-print(csv_to_records("id,город\n1,Азов\n2,Шахты\n3,егорлык\n"))
 
 
 
 def merge_by_key(rows, extra, key):
+    extra_key = next(iter(extra))
     for dic in rows:
-        if dic.get(key) == next(iter(extra)):
-            dic.update(extra[next(iter(extra))])
+        if dic.get(key) == extra_key and next(iter(extra[extra_key])) not in dic :
+            dic.update(extra[extra_key])
     return rows
 
 
 
 
-print(merge_by_key([{'id': '1', 'город': 'Азов'}, {'id': '2', 'город': 'Шахты'}, {'id': '3', 'город': 'егорлык'}], {"3": {"регион": "Зерноградский"}}, "id"))
+print(merge_by_key([{'id': '1', 'город': 'Азов'}, {'id': '2', 'город': 'Шахты', 'регион': 'Чурчхела'}, {'id': '3', 'город': 'егорлык'}], {"Шахты": {"регион": "Зерноградский"}}, "город"))
 
 
 
