@@ -1,7 +1,3 @@
-
-
-
-
 def csv_to_records(text):
     
     lst = []
@@ -52,7 +48,23 @@ def parse_settings(lines):
             otvet[next(reversed(otvet))].append(x[4:].strip())
     return otvet
 
+
+print(csv_to_records("id,город\n1,Азов\n2,Шахты\n3,егорлык\n"))
+
+
+
 def merge_by_key(rows, extra, key):
-    pass
+    for dic in rows:
+        if dic.get(key) == next(iter(extra)):
+            dic.update(extra[next(iter(extra))])
+    return rows
+
+
+
+
+print(merge_by_key([{'id': '1', 'город': 'Азов'}, {'id': '2', 'город': 'Шахты'}, {'id': '3', 'город': 'егорлык'}], {"3": {"регион": "Зерноградский"}}, "id"))
+
+
+
 def records_to_json(records):
     pass
