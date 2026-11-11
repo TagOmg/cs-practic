@@ -15,47 +15,42 @@ def csv_to_records(text):
         otvet = {}
         lol = x.split(",")
 
-        otvet[id] = lol[0].strip()
-        otvet[city] = lol[1].strip()
+        otvet[id.strip()] = lol[0].strip()
+        otvet[city.strip()] = lol[1].strip()
 
         lst2.append(otvet)
 
     return lst2
 
-
 def parse_settings(lines):
     otvet = {}
     for x in lines:
         if '#' in x:
-            x = x[:x.index('#')]
-            print(x)
+            x = x[:x.index('#')].strip()
         if ": " in x:
             lol = x.split(': ')      
             try:
-
+                key = lol[0].strip()
+                value = lol[1].strip()
                 if "." in lol[1]:
-                    otvet[lol[0]] = float(lol[1])  
+                    otvet[key] = float(value)  
                 else:
-                    otvet[lol[0]] = int(lol[1])  
+                    otvet[key] = int(value)  
 
             except ValueError:
 
-                if 'true' in lol[1] or 'yes' in lol[1]:
-                    otvet[lol[0]] = True
-                elif 'false' in lol[1] or 'no' in lol[1]:
-                    otvet[lol[0]] = False
+                if 'true' in value or 'yes' in value:
+                    otvet[key] = True
+                elif 'false' in value or 'no' in value:
+                    otvet[key] = False
                 else:
-                    otvet[lol[0]] = lol[1]
+                    otvet[key] = value
 
         elif ":" in x:
-            otvet[x[:-1]] = []  
+            otvet[x[:-1].strip()] = []  
         elif len(x) != 0:
-            otvet[next(reversed(otvet))].append(x[4:])
-        print(x)
+            otvet[next(reversed(otvet))].append(x[4:].strip())
     return otvet
-
-print(parse_settings(["title: Отчёт за март","lol: svo #svo", "decimals: 1", "active: true",
-                "columns:", "  - город", "  - цена"]))
 
 def merge_by_key(rows, extra, key):
     pass
