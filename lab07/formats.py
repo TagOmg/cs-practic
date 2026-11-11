@@ -30,7 +30,8 @@ def parse_settings(lines):
             try:
                 key = lol[0].strip()
                 value = lol[1].strip()
-                if "." in lol[1]:
+                if "." in lol[1] or "," in lol[1]:
+                    lol[1].replace(',', '.')
                     otvet[key] = float(value)  
                 else:
                     otvet[key] = int(value)  
@@ -62,5 +63,3 @@ def merge_by_key(rows, extra, key):
 def records_to_json(records: list[dict]) -> str:
     return json.dumps(records, indent=2, sort_keys=True, ensure_ascii=False)
 
-print(
-records_to_json([{"б": 2, "а": 1, 'я':3}]))
