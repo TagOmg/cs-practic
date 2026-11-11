@@ -30,8 +30,8 @@ def parse_settings(lines):
             try:
                 key = lol[0].strip()
                 value = lol[1].strip()
-                if "." in lol[1] or "," in lol[1]:
-                    lol[1].replace(',', '.')
+                if "." in value or "," in value:
+                    value = value.replace(',', '.')
                     otvet[key] = float(value)  
                 else:
                     otvet[key] = int(value)  
