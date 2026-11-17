@@ -1,6 +1,6 @@
 import numpy as np
 
-def make_hour():
+def make_hours():
     return np.arange(0, 22, 3).tolist()
 
 def vector_report(values):
