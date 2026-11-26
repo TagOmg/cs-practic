@@ -50,4 +50,4 @@ def point_distance(first, second):
     first = np.array(first)
     second = np.array(second)
 
-    return np.linalg.norm(first,second).tolist()
+    return np.linalg.norm(first - second).tolist()
